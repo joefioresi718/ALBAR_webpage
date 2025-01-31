@@ -259,7 +259,7 @@
     <div class="column has-text-justified">
       <div class="method-diagram">
 	      <!--- <img style="padding-top:10px" src="./static/images/method_diagram.svg"> --->
-        <img style="padding-top:10px" src="./static/images/main_architecture.pdf">
+        <img style="padding-top:10px" src="./static/images/main_architecture.png">
         <h2 class="content has-text-justified">
           Full ALBAR method diagram showing two types clips passed through the same video encoder with different losses applied to each. 
           The first clip simply uses a standard cross entropy loss to learn to classify actions based on clips with motion. The second clip is created by sampling a frame from the first clip and repeating it to match the original clip shape, creating a static clip with no motion. The adversarial component is created by <em>subtracting</em> the cross entropy of the static clip prediction. This prediction is encouraged to be uncertain by the entropy loss, and the gradients w.r.t. the static prediction (shown in <span style="color:red;">red</span>) are encouraged to be lower for more stable training by the gradient penalty loss.
