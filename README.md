@@ -1,14 +1,14 @@
-# TeD-SPAD
+# ALBAR
 
-This is the repository that contains source code for the [TeD-SPAD website](https://joefioresi718.github.io/TeD-SPAD_webpage/).
+This is the repository that contains source code for the [ALBAR website](https://joefioresi718.github.io/ALBAR_webpage/).
 
-If you find TeD-SPAD useful for your work please cite:
+If you find ALBAR useful for your work please cite:
 ```
-@inproceedings{fioresi2023tedspad,
-  title={TeD-SPAD: Temporal Distinctiveness for Self-supervised Privacy-preservation for video Anomaly Detection},
+@inproceedings{fioresi2025albar,
+  title={ALBAR: Adversarial Learning approach to mitigate Biases in Action Recognition},
   author={Fioresi, Joseph and Dave, Ishan and Shah, Mubarak},
-  booktitle={ICCV},
-  year={2023}
+  booktitle={ICLR},
+  year={2025}
 }
 ```
 
