@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="TeD-SPAD utilized temporally distinctive video representations to localize anomalous video segments under privacy constraints.">
-  <meta name="keywords" content="Anomaly Detection, TeD-SPAD, Temporal Distinctiveness, ICCV 2023">
+        content="ALBAR utilizes adversarial learning to mitigate foreground and background biases in video action recognition.">
+  <meta name="keywords" content="action recognition, foreground bias, background bias, ALBAR, adversarial learning, ICLR 2025">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TeD-SPAD: Temporal Distinctiveness for Self-supervised Privacy-preservation for video Anomaly Detection</title>
+  <title>ALBAR: Adversarial Learning approach to mitigate Biases in Action Recognition</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics
   <script async src=""></script>
@@ -48,7 +48,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">TeD-SPAD: Temporal Distinctiveness for Self-supervised Privacy-preservation for video Anomaly Detection [ICCV 2023]</h1>
+          <h1 class="title is-1 publication-title">ALBAR: Adversarial Learning approach to mitigate Biases in Action Recognition [ICLR 2025]</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://joefioresi718.github.io/">Joseph Fioresi</a><sup>1</sup>,</span>
@@ -96,7 +96,7 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/UCF-CRCV/TeD-SPAD"
+                <a href="https://github.com/UCF-CRCV/ALBAR"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -106,7 +106,7 @@
               </span>
               <!-- Poster Link -->
               <span class="link-block">
-                <a href="./static/images/ted_spad_poster.pdf"
+                <a href="./static/images/albar_poster.pdf"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-image"></i>
@@ -127,7 +127,7 @@
 	<center>
 		<div class="container is-max-desktop">
 			<div class="hero-body">
-			  <img src="./static/images/TeaserFigure.svg" alt="TeD-SPAD Teaser" class="teaser-image">
+			  <img src="./static/images/TeaserFigure.svg" alt="ALBAR Teaser" class="teaser-image">
 			  <h2 class="subtitle has-text-centered">
 				TeD-SPAD removes private attributes from videos without requring any annotations.
 				Anonymized videos can be used with minimal utility loss in video anomaly detection. 
@@ -169,20 +169,10 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Video anomaly detection (VAD) without human monitoring is a complex computer vision task that can have a positive impact 
-            on society if implemented successfully. While recent advances have made significant progress in solving this task, 
-            most existing approaches overlook a critical real-world concern: privacy. With the increasing popularity of artificial 
-            intelligence technologies, it becomes crucial to implement proper AI ethics into their development. 
-            Privacy leakage in VAD allows models to pick up and amplify unnecessary biases related to people's personal information, 
-            which may lead to undesirable decision making.
+            Bias in machine learning models can lead to unfair decision making, and while it has been well-studied in the image and text domains, it remains underexplored in action recognition. Action recognition models often suffer from background bias (i.e., inferring actions based on background cues) and foreground bias (i.e., relying on subject appearance), which can be detrimental to real-life applications such as autonomous vehicles or assisted living monitoring. While prior approaches have mainly focused on mitigating background bias using specialized augmentations, we thoroughly study both biases.
           </p>
           <p>
-            In this paper, we propose TeD-SPAD, a privacy-aware video anomaly detection framework that destroys visual private information 
-            in a self-supervised manner. In particular, we propose the use of a temporally-distinct triplet loss to promote temporally 
-            discriminative features, which complements current weakly-supervised VAD methods. Using TeD-SPAD, we achieve a positive trade-off 
-            between privacy protection and utility anomaly detection performance on three popular weakly supervised VAD datasets: UCF-Crime, 
-            XD-Violence, and ShanghaiTech. Our proposed anonymization model reduces private attribute prediction by 32.25% while only reducing 
-            frame-level ROC AUC on the UCF-Crime anomaly detection dataset by 3.69%.
+            In this paper, we propose ALBAR, a novel adversarial training method that mitigates foreground and background biases without requiring specialized knowledge of the bias attributes. Our framework applies an adversarial cross-entropy loss to the sampled static clip (where all the frames are the same) and aims to make its class probabilities uniform using a proposed <em>entropy maximization</em> loss. Additionally, we introduce a <em>gradient penalty</em> loss for regularization against the debiasing process. We evaluate our method on established background and foreground bias protocols, setting a new state-of-the-art and strongly improving combined debiasing performance by over <strong>12%</strong> on HMDB51. Furthermore, we identify an issue of background leakage in the existing UCF101 protocol for bias evaluation which provides a shortcut to predict actions and does not provide an accurate measure of the debiasing capability of a model. We address this issue by proposing more fine-grained segmentation boundaries for the actor, where our method also outperforms existing approaches.
           </p>
         </div>
       </div>
@@ -270,12 +260,10 @@
       <div class="method-diagram">
         <img style="padding-top:10px" src="./static/images/method_diagram.svg">
         <h2 class="content has-text-justified">
-          Full TeD-SPAD framework consisting of the proxy anonymization training followed by the privacy-preserved anomaly detection. 
-          (a) shows this proxy training, where UNet is used to anonymize frames in such a way that reduces mutual information between 
-          frames while maintaining utility performance. We complement the standard cross-entropy loss with our proposed temporally-distinct triplet loss, 
-          which enforces a difference in clip features at distinct timesteps. After training the anonymizer and feature extractor, 
-          (b) shows the privacy-preserved workflow, where the anomaly dataset videos are passed through the proxy-trained <i>f<sub>A</sub></i>, <i>f<sub>T</sub></i>, 
-          then into any WSAD algorithm.</h2>
+          Full ALBAR method diagram showing two types clips passed through the same video encoder with different losses applied to each. 
+          The first clip simply uses a standard cross entropy loss to learn to classify actions based on clips with motion. The second clip is created by sampling a frame from the first clip and repeating it to match the original clip shape, creating a static clip with no motion. The adversarial component is created by <em>subtracting</em> the cross entropy of the static clip prediction. This prediction is encouraged to be uncertain by the entropy loss, and the gradients w.r.t. the static prediction (shown in <p style="color:red;">red</p>) are encouraged to be lower for more stable training by the gradient penalty loss.
+           <!-- A <em>negative gradient</em> cross entropy loss is applied to this clip, encouraging the model to predict <em>incorrect</em> action classes given a clip with no motion. To stabilize this adversarial training, additional <em>entropy maximization</em> and <em>gradient penalty</em> losses are applied to the static clip. The entropy maximization essentially causes the model to be highly uncertain about class predictions, while the gradient penalty prevents static inputs from having too large an effect on training. -->
+          </h2>
       </div>
     </div>
 
@@ -322,39 +310,12 @@
 <section class="section" id="results">
   <div class="container is-max-desktop">
     <h2 class="title is-4">Results</h2>
-    <img src="./static/images/tradeoff_plots.png">
     <div class="column has-text-justified">
       <h2 class="content has-text-justified">
         <p>
-          Trade-off plots between anomaly detection benchmarks AUC and VISPR 
-          privacy attribute prediction cMAP for different privacy preserving methods. 
-          Optimal trade-off point is top left of plot (higher AD performance, lower PA prediction ability).
-          Our method (green star) is able to achieve a better trade-off than the other methods by incorporating
-          the temporal-distinctiveness objective.
-        </p>
-        <p>
-          Below are qualitative results highlighting the improvement in both privacy preservation and anomaly detection performance
-          when compared to existing privacy preserving techniques.
-        </p>
+          Below are quantitative results highlighting the improvement when compared to existing debiasing techniques in both background and foreground debiasing performance across all protocols based on the HMDB51 dataset. ALBAR defines a strong SOTA by achieving impressive foreground debiasing performance, demonstrating the efficacy of the proposed static adversarial approach.</p>
       </h2>
       <img src="./static/images/results_table.png">
-      <!-- <table>
-        <tr>
-          <th>Company</th>
-          <th>Contact</th>
-          <th>Country</th>
-        </tr>
-        <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Centro comercial Moctezuma</td>
-          <td>Francisco Chang</td>
-          <td>Mexico</td>
-        </tr>
-      </table> -->
     </div>
   </div>
 </section>
@@ -365,14 +326,7 @@
     <div class="column has-text-justified">
       <h2 class="content has-text-justified">
         <p>
-          In this paper, we highlight the importance of privacy, a previously neglected aspect of video anomaly detection. 
-          We present TeD-SPAD, a framework for applying Temporal Distinctiveness to Self-supervised Privacy-preserving video Anomaly Detection. 
-          TeD-SPAD demonstrates the effectiveness of using a temporally-distinct triplet loss while anonymizing an action recognition model, 
-          as it enhances feature representation temporal distinctiveness, which complements the downstream anomaly detection model. 
-          By effectively destroying spatial private information, we remove the model's ability to use this information in its decision-making process. 
-          As a future research direction, this framework can be extended to other tasks, such as spatio-temporal anomaly detection. 
-          The anonymizing encoder-decoder may also be made more powerful with techniques using recent masked image modeling. 
-          It is our hope that this work contributes to the development of more responsible and unbiased automated anomaly detection systems.
+          We propose ALBAR, a novel label-free adversarial training framework for efficient background and foreground debiasing of video action recognition models. The framework eliminates the need for direct knowledge of biased attributes such as an additional critic model, instead leveraging the negative cross-entropy loss of a clip without motion passed through the same model as the adversarial component. To ensure optimal training, we incorporate static clip entropy maximization and gradient penalty objectives. We thoroughly validate the performance of our approach across a comprehensive suite of bias evaluation protocols, demonstrating its effectiveness and generalization across multiple datasets. Moreover, ALBAR can be seamlessly combined with existing debiasing augmentations to achieve performance that significantly surpasses the current state-of-the-art. It is our hope that our work contributes to the development of fair, unbiased, and trustworthy video understanding models.
         </p>
         <p>
           For more technical details and results, check out our attached main paper, thank you!
@@ -386,12 +340,12 @@
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>
-@inproceedings{fioresi2023tedspad,
-  title={TeD-SPAD: Temporal Distinctiveness for Self-supervised Privacy-preservation for video Anomaly Detection},
+@inproceedings{fioresi2025albar,
+  title={ALBAR: Adversarial Learning approach to mitigate Biases in Action Recognition},
   author={Fioresi, Joseph and Dave, Ishan Rajendrakumar and Shah, Mubarak},
-  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  booktitle={Proceedings of the International Conference on Learning Representations},
   pages={13598--13609},
-  year={2023}
+  year={2025}
 }
 </code></pre>
   </div>
@@ -413,7 +367,7 @@
   <div class="container">
     <div class="content has-text-centered">
       <a class="icon-link"
-         href="./static/images/ted_spad_arxiv.pdf">
+         href="./static/images/albar_arxiv.pdf">
         <i class="fas fa-file-pdf"></i>
       </a>
       <a class="icon-link" href="https://github.com/joefioresi718" class="external-link" disabled>
