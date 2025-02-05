@@ -123,7 +123,7 @@
   </div>
 </section>
 
-<section class="hero teaser">
+<!-- <section class="hero teaser">
 	<center>
 		<div class="container is-max-desktop">
 			<div class="hero-body">
@@ -134,7 +134,7 @@
 			</div>
 		  </div>
 	</center>
-</section>
+</section> -->
 
 <style> 
     /* .results-carousel {
@@ -278,29 +278,41 @@
     <h2 class="title is-4">Static Adversarial Loss</h2>
     <div class="column has-text-justified">
       <h2 class="content has-text-justified">
-        Many weakly supervised anomaly detection (WSAD) papers such as the <a href="https://arxiv.org/pdf/2211.15098.pdf">MGFN</a> model used in this work find that variation between feature magnitudes 
-        of video segments are useful for localizing anomalous segments in videos. Based on this observation, we speculate that detecting anomalies in long, 
-        untrimmed videos requires temporally distinctive reasoning to determine whether events in the same scene are anomalous. The figure below shows
-        the separation objective of the magnitude contrastive loss proposed by the authors of <a href="https://arxiv.org/pdf/2211.15098.pdf">MGFN</a>.
+        Negative cross-entropy loss applied to a static clip to encourage the model to predict incorrect action classes given a clip with no motion. The model is trained to predict the same class for both the original and static clips, while the adversarial component is trained to predict different classes for the static clip. This creates a push-pull effect between the two components, leading to a more robust model that is less reliant on static information.
       </h2>
       <div class="column is-centered">
-        <img style="display: flex; width: 40%; height: 40%; margin: auto;" src="./static/images/mgfn_magcon.png">
+        <img style="display: flex; width: 40%; height: 40%; margin: auto;" src="./static/images/adv.svg">
       </div>
       
     </div>
-  
 
-    <h2 class="title is-4">Effect of Gradient Penalty</h2>
-    <div class="column is-centered">
-      <img style="display: flex; margin: auto; width: 35%; height: 35%;" src="./static/images/gradient_penalty.svg">
-    </div>
+    <h2 class="title is-4">Static Entropy Loss</h2>
     <div class="column has-text-justified">
       <h2 class="content has-text-justified">
-        The above graph highlights the efficacy of our additional gradient penalty objective in stabilizing training and improving performance. It prevents the model from taking large steps in different directions as the static adversarial and temporal cross-entropy objectives fight back and forth, leading to overall smoother learning and improved overall performance.
-        
+        Static entropy loss. The model is trained to predict the same class for both the original and static clips, while the adversarial component is trained to predict different classes for the static clip. This creates a push-pull effect between the two components, leading to a more robust model that is less reliant on static information.
       </h2>
+      <div class="column is-centered">
+        <img style="display: flex; width: 40%; height: 40%; margin: auto;" src="./static/images/ent.svg">
+      </div>
+      
     </div>
-	</div>
+
+    <h2 class="title is-4">Gradient Penalty Loss</h2>
+    <div class="column has-text-justified">
+      <h2 class="content has-text-justified">
+        Gradient penalty loss. The model is trained to predict the same class for both the original and static clips, while the adversarial component is trained to predict different classes for the static clip. This creates a push-pull effect between the two components, leading to a more robust model that is less reliant on static information.
+      </h2>
+      <div class="column is-centered">
+        <img style="display: flex; width: 40%; height: 40%; margin: auto;" src="./static/images/gp.svg">
+      </div>
+      <h2 class="content has-text-justified">
+        The below graph highlights the efficacy of our additional gradient penalty objective in stabilizing training and improving performance. It prevents the model from taking large steps in different directions as the static adversarial and temporal cross-entropy objectives fight back and forth, leading to overall smoother learning and improved overall performance.
+      </h2>
+      <div class="column is-centered">
+        <img style="display: flex; margin: auto; width: 35%; height: 35%;" src="./static/images/gradient_penalty.svg">
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="section" id="results">
