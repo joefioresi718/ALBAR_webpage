@@ -196,42 +196,48 @@
   <div class="hero-body">
 	  <div class="container column is-four-fifths">
 		<center>
-			<h2 class="title is-3">Anonymization Visualizations</h2>
+			<h2 class="title is-3">Background/Foreground Bias in Action Recognition</h2>
 		</center>
 		<div id="results-carousel" class="carousel results-carousel">
 			<div class="item active">
 				<center>
-					<h2 class="title is-4">Action: Tennis Swing</h2>
+					<h2 class="title is-4">Background Bias</h2>
 					<div class="gif-pair">
 						<div>
-							<h2 class="title is-5">Original</h2>
+							<h2 class="title is-5">Original Video</h2>
 							<img src="./static/videos/tennis_raw.gif" id="tennis-raw">
-              <h3 class="title is-6">Baseline Prediction: Tennis Swing</h3>
+              <h3 class="title is-6">Baseline Prediction: <span style="color: green;">Tennis Swing</span></h3>
+              <h3 class="title is-6">ALBAR Prediction: <span style="color: green;">Tennis Swing</span></h3>
 						</div>
 						<div>
 							<h2 class="title is-5">Background Edit</h2>
 							<img src="./static/videos/tennis_background.gif" id="tennis-background">
               <h3 class="title is-6">Baseline Prediction: <span style="color: red;">Horse Riding</span></h3>
+              <h3 class="title is-6">ALBAR Prediction: <span style="color: green;">Tennis Swing</span></h3>
 						</div>
 					</div>
 				</center>
 			</div>
 			<div class="item">
 				<center>
-					<h2 class="title is-4">Action: Archery</h2>
+					<h2 class="title is-4">Foreground Bias</h2>
 					<div class="gif-pair">
 						<div>
-							<h2 class="title is-5">Raw</h2>
-							<img src="./static/videos/archery_raw.mp4" id="archery-raw">
+							<h2 class="title is-5">Single Video Frame</h2>
+              <img src="./static/images/archery_frame.jpg" id="archery-static">
+              <h3 class="title is-6">Baseline Prediction: <span style="color: red;">Passing American Football</span></h3>
+              <h3 class="title is-6">ALBAR Prediction: <span style="color: red;"></span>Playing Accordion</h3>
 						</div>
 						<div>
-							<h2 class="title is-5">Static Bias</h2>
-							<img src="./static/images/archery_raw.jpg" id="archery-static">
+              <h2 class="title is-5">Original Video</h2>
+              <img src="./static/videos/archery_raw.gif" id="archery-raw">
+              <h3 class="title is-6">Baseline Prediction: <span style="color: red;">Passing American Football</span></h3>
+              <h3 class="title is-6">ALBAR Prediction: <span style="color: green;">Archery</span></h3>
 						</div>
 					</div>
 				</center>
 			</div>
-			<div class="item">
+			<!-- <div class="item">
 				<center>
 					<h2 class="title is-4">UCF-Crime: Shoplifting026_x264.mp4</h2>
 					<div class="gif-pair">
@@ -245,7 +251,7 @@
 						</div>
 					</div>
 				</center>
-			</div>
+			</div> -->
         </div>
     </div>
   </div>
