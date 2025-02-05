@@ -129,8 +129,7 @@
 			<div class="hero-body">
 			  <img src="./static/images/TeaserFigure.svg" alt="ALBAR Teaser" class="teaser-image">
 			  <h2 class="subtitle has-text-centered">
-				TeD-SPAD removes private attributes from videos without requring any annotations.
-				Anonymized videos can be used with minimal utility loss in video anomaly detection. 
+				ALBAR classifies videos without relying on background or static foreground information.
 			  </h2>
 			</div>
 		  </div>
@@ -202,30 +201,32 @@
 		<div id="results-carousel" class="carousel results-carousel">
 			<div class="item active">
 				<center>
-					<h2 class="title is-4">UCF-Crime: Assault033_x264.mp4</h2>
+					<h2 class="title is-4">Action: Tennis Swing</h2>
 					<div class="gif-pair">
 						<div>
-							<h2 class="title is-5">Raw</h2>
-							<img src="./static/videos/raw_Assault033_x264-Anomaly01.gif" id="assault-raw">
+							<h2 class="title is-5">Original</h2>
+							<img src="./static/videos/tennis_raw.gif" id="tennis-raw">
+              <h3 class="title is-6">Baseline Prediction: Tennis Swing</h3>
 						</div>
 						<div>
-							<h2 class="title is-5">Anonymized</h2>
-							<img src="./static/videos/anon_Assault033_x264-Anomaly01.gif" id="assault-anon">
+							<h2 class="title is-5">Background Edit</h2>
+							<img src="./static/videos/tennis_background.gif" id="tennis-background">
+              <h3 class="title is-6">Baseline Prediction: <span style="color: red;">Horse Riding</span></h3>
 						</div>
 					</div>
 				</center>
 			</div>
 			<div class="item">
 				<center>
-					<h2 class="title is-4">UCF-Crime: Fighting015_x264.mp4</h2>
+					<h2 class="title is-4">Action: Archery</h2>
 					<div class="gif-pair">
 						<div>
 							<h2 class="title is-5">Raw</h2>
-							<img src="./static/videos/raw_Fighting015_x264-Anomaly01.gif" id="fighting-raw">
+							<img src="./static/videos/archery_raw.mp4" id="archery-raw">
 						</div>
 						<div>
-							<h2 class="title is-5">Anonymized</h2>
-							<img src="./static/videos/anon_Fighting015_x264-Anomaly01.gif" id="fighting-anon">
+							<h2 class="title is-5">Static Bias</h2>
+							<img src="./static/videos/archery_static.png" id="archery-static">
 						</div>
 					</div>
 				</center>
@@ -314,6 +315,20 @@
       <h2 class="content has-text-justified">
         <p>
           Below are quantitative results highlighting the improvement when compared to existing debiasing techniques in both background and foreground debiasing performance across all protocols based on the HMDB51 dataset. ALBAR defines a strong SOTA by achieving impressive foreground debiasing performance, demonstrating the efficacy of the proposed static adversarial approach.</p>
+      </h2>
+      <img src="./static/images/results_table.png">
+    </div>
+  </div>
+</section>
+
+<section class="section" id="protocol_update">
+  <div class="container is-max-desktop">
+    <h2 class="title is-4">UCF101 Updated Protocol</h2>
+    <div class="column has-text-justified">
+      <h2 class="content has-text-justified">
+        <p>
+          <a href="https://openaccess.thecvf.com/content/ICCV2023/html/Li_Mitigating_and_Evaluating_Static_Bias_of_Action_Representations_in_the_ICCV_2023_paper.html">StillMix</a> proposed SCUBA and SCUFO datasets and metrics to evaluate both background and foreground bias in video action recognition models. These protocols require masks to extract the foreground from the original clips. However, the masks used for the UCF101 variation are bounding boxes. Thus, surrounding background information is carried into the bias evaluation videos, as seen in Figure~\ref{fig:ucf_back}. This is not sufficient to evaluate performance on this dataset, as a classifier reliant on the background can still take advantage of this information to score high on the protocol. To mitigate this effect, we utilize a flexible video object segmentation model, <a href="https://arxiv.org/pdf/2305.06558">SAMTrack</a> to segment the actors (subjects) in each video. The actors are initially grounded using the same bounding boxes. Each testing video is manually checked for accurate segmentation. The StillMix dataset creation protocol is used to create SCUBA and SCUFO variations with these new masks. The improved benchmark no longer includes background information, such as in Figure~\ref{fig:ucf_back} (a), tightly bounding the human subject as seen in Figure~\ref{fig:ucf_back} (b). Results in Table~\ref{tab:ucf_scuba_small} show results on our newly created benchmark. See \supp{Appendix Sec.~\ref{sec:exp_details}} for results on the existing benchmark.
+        </p>
       </h2>
       <img src="./static/images/results_table.png">
     </div>
