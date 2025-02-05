@@ -226,7 +226,7 @@
 						</div>
 						<div>
 							<h2 class="title is-5">Static Bias</h2>
-							<img src="./static/videos/archery_static.png" id="archery-static">
+							<img src="./static/images/archery_raw.jpg" id="archery-static">
 						</div>
 					</div>
 				</center>
@@ -269,7 +269,7 @@
       </div>
     </div>
 
-    <h2 class="title is-4">Anomaly Feature Representation Learning</h2>
+    <h2 class="title is-4">Static Adversarial Loss</h2>
     <div class="column has-text-justified">
       <h2 class="content has-text-justified">
         Many weakly supervised anomaly detection (WSAD) papers such as the <a href="https://arxiv.org/pdf/2211.15098.pdf">MGFN</a> model used in this work find that variation between feature magnitudes 
@@ -284,25 +284,15 @@
     </div>
   
 
-    <h2 class="title is-4">Self-Supervised Privacy Preservation</h2>
+    <h2 class="title is-4">Effect of Gradient Penalty</h2>
     <div class="column is-centered">
-      <img style="display: flex; margin: auto; width: 35%; height: 35%;" src="./static/images/Temp-DistLoss.svg">
+      <!-- <img style="display: flex; margin: auto; width: 35%; height: 35%;" src="./static/images/Temp-DistLoss.svg"> -->
+      <!-- insert pdf -->
+      <img style="display: flex; margin: auto; width: 35%; height: 35%;" src="./static/images/gradient_penalty.pdf">
     </div>
     <div class="column has-text-justified">
       <h2 class="content has-text-justified">
-        We propose a self-supervised privacy preservation method that uses a triplet loss to enforce temporal distinctiveness 
-        of the learned feature representations. 
-
-        <!-- We use a UNet architecture to anonymize each video frame along with I3D as the action classification/feature extraction model.  -->
-        The anonymizer, utility feature extractor, and budget model are trained jointly in an adversarial manner. 
-        The utility model is trained with a weighted combination of standard cross-entropy loss along with with the triplet contrastive loss,
-        which is composed of a positive pair of stochastically augmented clips and a negative clip from a different timestep in the same video. 
-        The learned temporally-distinctive representations are useful in the downstream anomaly detection task. In the next section, we show that
-        even under anonymization constraints, these representations perform on par with raw video representations. 
-        
-        <!-- Need to update this section. -->
-        <!-- We design a temporal-distinctive triplet loss, which increases the agreement 
-        between temporally-aligned clips of the same video and increases dissimilarity between representations of the clips which are temporally misaligned. -->
+        Figure~\ref{fig:gradpen_effect} highlights the efficacy of our additional gradient penalty objective in stabilizing training and improving performance. It prevents the model from taking large steps in different directions as the static adversarial and temporal cross-entropy objectives fight back and forth, leading to overall smoother learning and improved overall performance.
         
       </h2>
     </div>
