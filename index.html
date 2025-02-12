@@ -48,7 +48,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">ALBAR: Adversarial Learning approach to mitigate Biases in Action Recognition [ICLR 2025]</h1>
+          <h1 class="title is-1 publication-title">ALBAR: Adversarial Learning approach to mitigate Biases in Action Recognition<br>[ICLR 2025]</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://joefioresi718.github.io/">Joseph Fioresi</a><sup>1</sup>,</span>
@@ -66,8 +66,17 @@
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/pdf/2502.00156"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
               <span class="link-block">
-                <a href="https://openaccess.thecvf.com/content/ICCV2023/html/Fioresi_TeD-SPAD_Temporal_Distinctiveness_for_Self-Supervised_Privacy-Preservation_for_Video_Anomaly_Detection_ICCV_2023_paper.html"
+                <a href="./static/images/albar_arxiv.pdf"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -76,7 +85,7 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2308.11072"
+                <a href="https://arxiv.org/abs/2502.00156"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -85,7 +94,7 @@
                 </a>
               </span>
               <!-- Video Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://youtu.be/3a9qeJUD1GU?si=DlpYsj1AFW6iQX1J"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -93,7 +102,7 @@
                   </span>
                   <span>Video</span>
                 </a>
-              </span>
+              </span> -->
               <!-- Code Link. -->
               <span class="link-block">
                 <a href="https://github.com/UCF-CRCV/ALBAR"
@@ -105,7 +114,7 @@
                   </a>
               </span>
               <!-- Poster Link -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="./static/images/albar_poster.pdf"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -113,7 +122,7 @@
                   </span>
                   <span>Poster</span>
                 </a>
-              </span>
+              </span> -->
             </div>
 
           </div>
@@ -151,9 +160,64 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-evenly;
-      /* align-items: center;
-	  align-self: center; */
-      /* padding: 10px; */
+    }
+
+    /* Update these styles */
+    .prediction-container {
+      margin-top: 20px;  /* Space above first prediction */
+    }
+    
+    .prediction-line {
+      margin: 1px 0;     /* Reduced from 8px to 4px */
+      line-height: 0.5;    /* Reduced from 1.2 to 1 */
+    }
+
+    /* Add these new styles */
+    .gif-pair img {
+      width: 320px;      /* Set fixed width */
+      height: 240px;     /* Set fixed height */
+      object-fit: cover; /* Maintain aspect ratio and cover container */
+    }
+
+    /* Add these new styles to reduce spacing */
+    .title.is-4 {
+      margin-bottom: 1rem !important;  /* Reduce space below section titles */
+    }
+
+    .content h2 {
+      margin-top: 0.5rem !important;   /* Reduce space above content */
+    }
+
+    .column.has-text-justified {
+      margin-top: 0.5rem !important;   /* Reduce space above justified columns */
+    }
+
+    figure {
+      margin-top: 1rem !important;     /* Reduce space above figures */
+    }
+
+    /* Add this new style to reduce space between sections */
+    .section {
+      padding: 1.5rem 1.5rem !important;  /* Reduce from default 3rem padding */
+    }
+
+    /* Update existing spacing styles */
+    .title.is-4 {
+      margin-bottom: 1rem !important;
+      margin-top: 1rem !important;     /* Add top margin for subsection titles */
+    }
+
+    .content h2 {
+      margin-top: 0.5rem !important;
+    }
+
+    .column.has-text-justified {
+      margin-top: 0.5rem !important;
+    }
+
+    figure {
+      margin-top: 1rem !important;
+      margin-bottom: 1.5rem !important;  /* Add consistent bottom margin for figures */
     }
 </style>
 <section class="section">
@@ -202,14 +266,18 @@
 						<div>
 							<h2 class="title is-5">Original Video</h2>
 							<img src="./static/videos/tennis_raw.gif" id="tennis-raw">
-              <h2 class="title is-6">Baseline Prediction: <span style="color: green;">Tennis Swing</span></h2>
-              <h2 class="title is-6">ALBAR Prediction: <span style="color: green;">Tennis Swing</span></h2>
+							<div class="prediction-container">
+								<h2 class="title is-6 prediction-line">Baseline Prediction: <span style="color: green;">Tennis Swing</span></h2>
+								<h2 class="title is-6 prediction-line">ALBAR Prediction: <span style="color: green;">Tennis Swing</span></h2>
+							</div>
 						</div>
 						<div>
 							<h2 class="title is-5">Background Edit</h2>
 							<img src="./static/videos/tennis_background.gif" id="tennis-background">
-              <h2 class="title is-6">Baseline Prediction: <span style="color: red;">Horse Riding</span></h2>
-              <h2 class="title is-6">ALBAR Prediction: <span style="color: green;">Tennis Swing</span></h2>
+							<div class="prediction-container">
+								<h2 class="title is-6 prediction-line">Baseline Prediction: <span style="color: red;">Horse Riding</span></h2>
+								<h2 class="title is-6 prediction-line">ALBAR Prediction: <span style="color: green;">Tennis Swing</span></h2>
+							</div>
 						</div>
 					</div>
 				</center>
@@ -220,15 +288,19 @@
 					<div class="gif-pair">
 						<div>
 							<h2 class="title is-5">Single Video Frame</h2>
-              <img src="./static/images/archery_frame.jpg" id="archery-static">
-              <h2 class="title is-6">Baseline Prediction: <span style="color: red;">Passing American Football</span></h2>
-              <h2 class="title is-6">ALBAR Prediction: <span style="color: red;">Playing Accordion</span></h2>
+							<img src="./static/images/archery_frame.jpg" id="archery-static">
+							<div class="prediction-container">
+								<h2 class="title is-6 prediction-line">Baseline Prediction: <span style="color: red;">Passing American Football</span></h2>
+								<h2 class="title is-6 prediction-line">ALBAR Prediction: <span style="color: red;">Playing Accordion</span></h2>
+							</div>
 						</div>
 						<div>
-              <h2 class="title is-5">Original Video</h2>
-              <img src="./static/videos/archery_raw.gif" id="archery-raw">
-              <h2 class="title is-6">Baseline Prediction: <span style="color: red;">Passing American Football</span></h2>
-              <h2 class="title is-6">ALBAR Prediction: <span style="color: green;">Archery</span></h2>
+							<h2 class="title is-5">Original Video</h2>
+							<img src="./static/videos/archery_raw.gif" id="archery-raw">
+							<div class="prediction-container">
+								<h2 class="title is-6 prediction-line">Baseline Prediction: <span style="color: red;">Passing American Football</span></h2>
+								<h2 class="title is-6 prediction-line">ALBAR Prediction: <span style="color: green;">Archery</span></h2>
+							</div>
 						</div>
 					</div>
 				</center>
@@ -261,34 +333,32 @@
     <h2 class="title is-4">Method Diagram</h2>
     <div class="column has-text-justified">
       <div class="method-diagram">
-	      <!--- <img style="padding-top:10px" src="./static/images/method_diagram.svg"> --->
         <img style="padding-top:10px" src="./static/images/main_architecture.svg">
-        <h2 class="content has-text-justified">
-          Full ALBAR method diagram showing two types clips passed through the same video encoder with different losses applied to each. 
+        <figcaption style="text-align: center; margin-top: 10px;">
+          <b>Figure 1:</b> Full ALBAR method diagram showing two types clips passed through the same video encoder with different losses applied to each. 
           The first clip simply uses a standard cross entropy loss to learn to classify actions based on clips with motion. The second clip is created by sampling a frame from the first clip and repeating it to match the original clip shape, creating a static clip with no motion. The adversarial component is created by <em>subtracting</em> the cross entropy of the static clip prediction. This prediction is encouraged to be uncertain by the entropy loss, and the gradients w.r.t. the static prediction (shown in <span style="color:red;">red</span>) are encouraged to be lower for more stable training by the gradient penalty loss.
-           <!-- A <em>negative gradient</em> cross entropy loss is applied to this clip, encouraging the model to predict <em>incorrect</em> action classes given a clip with no motion. To stabilize this adversarial training, additional <em>entropy maximization</em> and <em>gradient penalty</em> losses are applied to the static clip. The entropy maximization essentially causes the model to be highly uncertain about class predictions, while the gradient penalty prevents static inputs from having too large an effect on training. -->
-          </h2>
+        </figcaption>
       </div>
     </div>
 
-    <h2 class="title is-4">Static Adversarial Loss</h2>
+    <h2 class="title is-4" style="margin-top: 2rem;">Static Adversarial Loss</h2>
     <div class="column has-text-justified">
       <h2 class="content has-text-justified">
-        Negative cross-entropy loss applied to a static clip to encourage the model to predict incorrect action classes given a clip with no motion. The model is trained to predict the same class for both the original and static clips, while the adversarial component is trained to predict different classes for the static clip. This creates a push-pull effect between the two components, leading to a more robust model that is less reliant on static information.
+        We propose an adversarial setup that uses the negative cross-entropy loss applied to a static clip to encourage the model to predict incorrect action classes given a clip with no motion. The model is trained to predict the correct class for the original clip, while training the model to predict a <em>different</em> class for the static clip. This creates a push-pull effect between the two components, leading to a more robust model that is less reliant on static information.
       </h2>
       <div class="column is-centered">
-        <img style="display: flex; width: 40%; height: 40%; margin: auto;" src="./static/images/adv.svg">
+        <img style="display: flex; width: 30%; height: 30%; margin: auto;" src="./static/images/adv.svg">
       </div>
       
     </div>
 
-    <h2 class="title is-4">Static Entropy Loss</h2>
+    <h2 class="title is-4">Static Entropy Maximization Loss</h2>
     <div class="column has-text-justified">
       <h2 class="content has-text-justified">
-        Static entropy loss. The model is trained to predict the same class for both the original and static clips, while the adversarial component is trained to predict different classes for the static clip. This creates a push-pull effect between the two components, leading to a more robust model that is less reliant on static information.
+        Simply applying the above adversarial loss causes the model to still learn the static correlations, but will intentionally choose an incorrect class for the static clip with high confidence. To combat this, we introduce a static <em>entropy maximization</em> loss that encourages the model to be uncertain about the static clip prediction by maximizing the entropy of the prediction. This way, the encoder is trained to have higher uncertainty when not provided temporal motion information, ideally losing the ability to predict actions properly based on spatial information.
       </h2>
       <div class="column is-centered">
-        <img style="display: flex; width: 40%; height: 40%; margin: auto;" src="./static/images/ent.svg">
+        <img style="display: flex; width: 30%; height: 30%; margin: auto;" src="./static/images/ent.svg">
       </div>
       
     </div>
@@ -296,16 +366,19 @@
     <h2 class="title is-4">Gradient Penalty Loss</h2>
     <div class="column has-text-justified">
       <h2 class="content has-text-justified">
-        Gradient penalty loss. The model is trained to predict the same class for both the original and static clips, while the adversarial component is trained to predict different classes for the static clip. This creates a push-pull effect between the two components, leading to a more robust model that is less reliant on static information.
+        Even with the entropy loss, we find that the adversarial training is still unstable, experiencing large fluctuations in performance during intermittent validation steps. To further stabilize and prevent drastic weight updates from static inputs, we introduce a <em></em>gradient penalty</em> loss that minimizes the gradient norm, only with respect to static clips.
       </h2>
       <div class="column is-centered">
-        <img style="display: flex; width: 40%; height: 40%; margin: auto;" src="./static/images/gp.svg">
+        <img style="display: flex; width: 30%; height: 30%; margin: auto;" src="./static/images/gp.svg">
       </div>
       <h2 class="content has-text-justified">
-        The below graph highlights the efficacy of our additional gradient penalty objective in stabilizing training and improving performance. It prevents the model from taking large steps in different directions as the static adversarial and temporal cross-entropy objectives fight back and forth, leading to overall smoother learning and improved overall performance.
+        The below Figure 2 highlights the efficacy of our additional gradient penalty objective in stabilizing training and improving performance. It prevents the model from taking large steps in different directions as the static adversarial and temporal cross-entropy objectives fight back and forth, leading to overall smoother learning and improved overall performance.
       </h2>
       <div class="column is-centered">
         <img style="display: flex; margin: auto; width: 75%; height: 75%;" src="./static/images/gradient_penalty.svg">
+        <figcaption style="text-align: center; maragin-top: 10px;">
+          <b>Figure 2:</b> Training curves showing the stabilizing effect of the gradient penalty loss. Without the penalty (<span style="color:red;">red</span>), training exhibits high variance and lower overall performance. Adding the gradient penalty (<span style="color:blue;">blue</span>) results in smoother training and better final performance.
+        </figcaption>
       </div>
     </div>
   </div>
@@ -317,9 +390,15 @@
     <div class="column has-text-justified">
       <h2 class="content has-text-justified">
         <p>
-          Below are quantitative results highlighting the improvement when compared to existing debiasing techniques in both background and foreground debiasing performance across all protocols based on the HMDB51 dataset. ALBAR defines a strong SOTA by achieving impressive foreground debiasing performance, demonstrating the efficacy of the proposed static adversarial approach.</p>
+          Below are quantitative results highlighting the improvement when compared to existing debiasing techniques in both background and foreground debiasing performance across all protocols based on the HMDB51 dataset. ALBAR defines a strong SOTA by achieving impressive foreground debiasing performance, demonstrating the efficacy of the proposed static adversarial approach.
+        </p>
       </h2>
-      <img src="./static/images/results_table.png">
+      <figure>
+        <img src="./static/images/results_table.png">
+        <figcaption style="text-align: center; margin-top: 10px;">
+          <b>Table 1:</b> Comparison of ALBAR with existing debiasing approaches on HMDB51 dataset. Results show significant improvements in both background and foreground debiasing performance.
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -330,10 +409,34 @@
     <div class="column has-text-justified">
       <h2 class="content has-text-justified">
         <p>
-          <a href="https://openaccess.thecvf.com/content/ICCV2023/html/Li_Mitigating_and_Evaluating_Static_Bias_of_Action_Representations_in_the_ICCV_2023_paper.html">StillMix</a> proposed SCUBA and SCUFO datasets and metrics to evaluate both background and foreground bias in video action recognition models. These protocols require masks to extract the foreground from the original clips. However, the masks used for the UCF101 variation are bounding boxes. Thus, surrounding background information is carried into the bias evaluation videos, as seen in Figure~\ref{fig:ucf_back}. This is not sufficient to evaluate performance on this dataset, as a classifier reliant on the background can still take advantage of this information to score high on the protocol. To mitigate this effect, we utilize a flexible video object segmentation model, <a href="https://arxiv.org/pdf/2305.06558">SAMTrack</a> to segment the actors (subjects) in each video. The actors are initially grounded using the same bounding boxes. Each testing video is manually checked for accurate segmentation. The StillMix dataset creation protocol is used to create SCUBA and SCUFO variations with these new masks. The improved benchmark no longer includes background information, such as in Figure~\ref{fig:ucf_back} (a), tightly bounding the human subject as seen in Figure~\ref{fig:ucf_back} (b). Results in Table~\ref{tab:ucf_scuba_small} show results on our newly created benchmark. See \supp{Appendix Sec.~\ref{sec:exp_details}} for results on the existing benchmark.
+          <a href="https://openaccess.thecvf.com/content/ICCV2023/html/Li_Mitigating_and_Evaluating_Static_Bias_of_Action_Representations_in_the_ICCV_2023_paper.html">StillMix</a> proposed SCUBA and SCUFO datasets and metrics to evaluate both background and foreground bias in video action recognition models. These protocols require masks to extract the foreground from the original clips. However, the masks used for the UCF101 variation are bounding boxes. Thus, surrounding background information is carried into the bias evaluation videos, as seen in Figure 3. This is not sufficient to evaluate performance on this dataset, as a classifier reliant on the background can still take advantage of this information to score high on the protocol. To mitigate this effect, we utilize a flexible video object segmentation model, <a href="https://arxiv.org/pdf/2305.06558">SAMTrack</a> to segment the actors (subjects) in each video. The actors are initially grounded using the same bounding boxes. Each testing video is manually checked for accurate segmentation. The StillMix dataset creation protocol is used to create SCUBA and SCUFO variations with these new masks. The improved benchmark no longer includes background information, such as in Figure 3(b), tightly bounding the human subject as seen in Figure 3(c). Results in Table 2 show results on our newly created benchmark.
         </p>
       </h2>
-      <img src="./static/images/results_table.png">
+      <figure>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <div style="text-align: center; width: 32%;">
+            <img src="./static/videos/skiing_raw.gif" style="width: 100%; height: auto;">
+            <div>(a)</div>
+          </div>
+          <div style="text-align: center; width: 32%;">
+            <img src="./static/videos/skiing_orig.gif" style="width: 100%; height: auto;">
+            <div>(b)</div>
+          </div>
+          <div style="text-align: center; width: 32%;">
+            <img src="./static/videos/skiing_ours.gif" style="width: 100%; height: auto;">
+            <div>(c)</div>
+          </div>
+        </div>
+        <figcaption style="text-align: center; margin-top: 10px;">
+          <b>Figure 3:</b> Comparison of (a) original video, (b) existing bounding box-based foreground extraction, and (c) our improved SAMTrack segmentation-based foreground extraction on UCF101 videos.
+        </figcaption>
+      </figure>
+      <figure style="margin-top: 30px;">
+        <img src="./static/images/ucf101_table.png">
+        <figcaption style="text-align: center; margin-top: 10px;">
+          <b>Table 2:</b> Performance comparison on our improved UCF101 benchmark using SAMTrack segmentation masks.
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>
